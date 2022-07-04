@@ -1,10 +1,9 @@
-import React, { useRef } from 'react';
-import * as yup from 'yup';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import React from 'react';
 import { TextInputTypes } from '@patternfly/react-core';
-
-import { FormWrapper } from './FormWrapper';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import * as yup from 'yup';
 import { InputField } from '../components';
+import { FormWrapper } from './FormWrapper';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

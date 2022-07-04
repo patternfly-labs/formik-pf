@@ -1,8 +1,8 @@
 import React from 'react';
 import { FormGroup, TextInputTypes, ValidatedOptions } from '@patternfly/react-core';
 import { useField } from 'formik';
-import { getFieldId } from '../utils';
 import { FieldProps } from '../types';
+import { getFieldId } from '../utils';
 
 export type BaseInputFieldProps = FieldProps & {
   type?: TextInputTypes;

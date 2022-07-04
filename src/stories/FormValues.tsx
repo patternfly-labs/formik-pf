@@ -17,15 +17,17 @@ interface Props {
   values: unknown;
 }
 
-const FormValues = ({ values }: Props) => (
-  <Card isFlat>
-    <CardBody>
-      <Text component="h5">Form State</Text>
-      <CodeBlock>
-        <CodeBlockCode>{JSON.stringify(values, replacer, 2)}</CodeBlockCode>
-      </CodeBlock>
-    </CardBody>
-  </Card>
-);
+function FormValues({ values }: Props) {
+  return (
+    <Card isFlat>
+      <CardBody>
+        <Text component="h5">Form State</Text>
+        <CodeBlock>
+          <CodeBlockCode>{JSON.stringify(values, replacer, 2)}</CodeBlockCode>
+        </CodeBlock>
+      </CardBody>
+    </Card>
+  );
+}
 
 export default FormValues;

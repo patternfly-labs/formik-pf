@@ -2,8 +2,8 @@ import React from 'react';
 import { FormGroup, Select, SelectVariant, SelectOption } from '@patternfly/react-core';
 import { useField, useFormikContext, FormikValues } from 'formik';
 import { pull } from 'lodash/pull';
-import { getFieldId } from '../utils';
 import { FieldProps } from '../types';
+import { getFieldId } from '../utils';
 
 type SelectInputOption = {
   value: string;
