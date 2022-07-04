@@ -1,2 +1,2 @@
 # formik-pf
-Patternfly + Formik
+A UI library that provides formik bindings with PF components.

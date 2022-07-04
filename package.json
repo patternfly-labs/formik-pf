@@ -1,0 +1,51 @@
+{
+  "name": "formik-pf",
+  "version": "0.0.1",
+  "description": "A UI library that provides formik bindings with PF components.",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "rollup": "rollup -c",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patternfly-labs/formik-pf.git"
+  },
+  "keywords": [
+    "Formik",
+    "Patternfly",
+    "React",
+    "Forms",
+    "UI",
+    "Library",
+    "Wizard"
+  ],
+  "author": "Rohit Rai",
+  "license": "Apache",
+  "bugs": {
+    "url": "https://github.com/patternfly-labs/formik-pf/issues"
+  },
+  "homepage": "https://github.com/patternfly-labs/formik-pf#readme",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^22.0.1",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-typescript": "^8.3.3",
+    "rollup": "^2.75.7",
+    "rollup-plugin-dts": "^4.2.2",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^4.4.4"
+  },
+  "peerDependencies": {
+    "@patternfly/react-core": "^4.224.1",
+    "@types/react": "^17.0.2",
+    "formik": "^2.2.9",
+    "react": "^17.0.2"
+  }
+}
