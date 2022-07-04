@@ -5,7 +5,6 @@ import { getFieldId } from '../utils';
 import { FieldProps } from '../types';
 
 export type BaseInputFieldProps = FieldProps & {
-  children: (props) => React.ReactNode;
   type?: TextInputTypes;
   placeholder?: string;
   onChange?: (event) => void;
@@ -13,7 +12,11 @@ export type BaseInputFieldProps = FieldProps & {
   autoComplete?: string;
 };
 
-const BaseInputField: React.FC<BaseInputFieldProps> = ({
+const BaseInputField: React.FC<
+  BaseInputFieldProps & {
+    children: (props) => React.ReactNode;
+  }
+> = ({
   children,
   name,
   label,
