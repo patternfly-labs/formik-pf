@@ -1,8 +1,8 @@
 import React from 'react';
 import { FormGroup } from '@patternfly/react-core';
 import { useField } from 'formik';
-import { getFieldId } from '../utils';
 import { FieldProps } from '../types';
+import { getFieldId } from '../utils';
 
 export type BaseToggleFieldProps = FieldProps & {
   children: (props) => React.ReactNode;

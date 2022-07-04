@@ -18,24 +18,20 @@ const InputGroupField: React.FC<GroupInputProps> = ({
   afterInput,
   groupTextType,
   ...baseProps
-}) => {
-  return (
-    <BaseInputField {...baseProps}>
-      {(props) => {
-        return (
-          <InputGroup>
-            {beforeInput}
-            {groupTextType === GroupTextType.TextArea ? (
-              <TextArea {...props} />
-            ) : (
-              <TextInput {...props} />
-            )}
-            {afterInput}
-          </InputGroup>
-        );
-      }}
-    </BaseInputField>
-  );
-};
+}) => (
+  <BaseInputField {...baseProps}>
+    {(props) => (
+      <InputGroup>
+        {beforeInput}
+        {groupTextType === GroupTextType.TextArea ? (
+          <TextArea {...props} />
+        ) : (
+          <TextInput {...props} />
+        )}
+        {afterInput}
+      </InputGroup>
+    )}
+  </BaseInputField>
+);
 
 export default InputGroupField;
