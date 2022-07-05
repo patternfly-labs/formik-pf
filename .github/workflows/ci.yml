@@ -30,9 +30,9 @@ jobs:
       - name: Install Dependencies 🥁
         run: npm install
 
-      - name: Lint ✅
-        # max-warnings=0 ensures that CI fails even for warnings
-        run: npm run lint --max-warnings=0
+#       - name: Lint ✅
+#         # max-warnings=0 ensures that CI fails even for warnings
+#         run: npm run lint --max-warnings=0
 
       - name: Test 🧪
         run: npm run test
