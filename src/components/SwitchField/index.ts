@@ -1,1 +1,1 @@
-export { default as SwitchFiedl } from './SwitchField';
+export { default as SwitchField } from './SwitchField';

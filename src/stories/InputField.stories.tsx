@@ -10,9 +10,9 @@ export default {
   title: 'Formik PF/InputField',
   component: InputField,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  // argTypes: {
-  //   backgroundColor: { control: 'color' },
-  // },
+  argTypes: {
+    isRequired: { control: 'boolean' },
+  },
 } as ComponentMeta<typeof InputField>;
 
 const initialValues = {

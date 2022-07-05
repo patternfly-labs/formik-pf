@@ -3,6 +3,7 @@ export * from './FileUploadField';
 export * from './FormikWizard';
 export * from './InputField';
 export * from './InputGroupField';
+export * from './NumberSpinnerField';
 export * from './RadioButtonField';
 export * from './RadioGroupField';
 export * from './SelectField';

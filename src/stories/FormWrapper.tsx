@@ -5,7 +5,6 @@ import { Formik } from 'formik';
 import FormValues from './FormValues';
 
 import '@patternfly/react-core/dist/styles/base.css';
-import '@patternfly/react-styles/css/components/Wizard/wizard.css';
 
 type FormWrapperProps = {
   children: React.ReactNode;
