@@ -99,4 +99,15 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'error',
     'require-atomic-updates': 0,
   },
+  settings: {
+    'import/extensions': ['.js', '.jsx'],
+    'import/resolver': {
+      node: { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
+      typescript: {},
+    },
+  },
+  globals: {
+    process: 'readonly',
+    global: 'readonly',
+  },
 };
