@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardBody, CodeBlock, CodeBlockCode, Text } from '@patternfly/react-core';
+import { useFormikContext } from 'formik';
 
 function replacer(_: string, value: unknown) {
   // Filtering out properties
@@ -13,11 +14,8 @@ function replacer(_: string, value: unknown) {
   return value;
 }
 
-interface Props {
-  values: unknown;
-}
-
-function FormValues({ values }: Props) {
+const FormValues: React.FC = () => {
+  const { values } = useFormikContext();
   return (
     <Card isFlat>
       <CardBody>
@@ -28,6 +26,6 @@ function FormValues({ values }: Props) {
       </CardBody>
     </Card>
   );
-}
+};
 
 export default FormValues;

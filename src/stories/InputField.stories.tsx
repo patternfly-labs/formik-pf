@@ -52,6 +52,7 @@ Email.args = {
   label: 'Email',
   type: TextInputTypes.email,
   helperText: 'Enter a valid email address',
+  isRequired: true,
 };
 
 export const Password = Template.bind({});
@@ -59,4 +60,5 @@ Password.args = {
   name: 'password',
   label: 'Password',
   type: TextInputTypes.password,
+  isRequired: true,
 };
