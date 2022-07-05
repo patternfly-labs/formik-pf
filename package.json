@@ -15,9 +15,8 @@
     "test": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "lint": "npm-run-all lint:*",
-    "lint:ts": "eslint . --ext .js,.jsx,.ts,.tsx --color",
-    "lint:ts:fix": "npm run lint:ts -- --fix",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --color",
+    "lint:fix": "npm run lint:ts -- --fix",
     "lint:sass": "stylelint 'src/**/*.scss' --config .stylelintrc.json"
   },
   "repository": {
