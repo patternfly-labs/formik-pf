@@ -1,6 +1,6 @@
 {
   "name": "formik-pf",
-  "version": "0.0.1-alpha1",
+  "version": "0.0.1-alpha2",
   "description": "A UI library that provides formik bindings with PF components.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
