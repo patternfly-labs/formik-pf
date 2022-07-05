@@ -8,8 +8,7 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    'plugin:import/errors',
-    'plugin:import/warnings',
+    'plugin:import/recommended',
     'plugin:import/typescript',
     'plugin:react/recommended',
     'prettier',
@@ -102,7 +101,7 @@ module.exports = {
   settings: {
     'import/extensions': ['.js', '.jsx'],
     'import/resolver': {
-      node: { 
+      node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
         moduleDirectory: ['node_modules', 'src/'],
       },
