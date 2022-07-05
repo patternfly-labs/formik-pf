@@ -1,15 +1,17 @@
 {
   "name": "formik-pf",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha1",
   "description": "A UI library that provides formik bindings with PF components.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "types": "dist/index.d.ts",
   "scripts": {
     "rollup": "rollup -c",
+    "build": "rm -rf dist && rollup -c",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
@@ -32,7 +34,7 @@
     "Wizard"
   ],
   "author": "Rohit Rai",
-  "license": "Apache",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/patternfly-labs/formik-pf/issues"
   },

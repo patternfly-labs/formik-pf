@@ -30,10 +30,10 @@ export const FormWrapper: React.FC<FormWrapperProps> = ({
           }, 2000);
         }}
       >
-        {({ handleSubmit, handleReset, isSubmitting, values }) => (
+        {({ handleSubmit, handleReset, isSubmitting }) => (
           <Form onSubmit={handleSubmit} onReset={handleReset}>
             {children}
-            <FormValues values={values} />
+            <FormValues />
             <ActionGroup>
               <Button variant="primary" type="submit" isLoading={isSubmitting}>
                 Submit
