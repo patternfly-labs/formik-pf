@@ -102,7 +102,10 @@ module.exports = {
   settings: {
     'import/extensions': ['.js', '.jsx'],
     'import/resolver': {
-      node: { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
+      node: { 
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        moduleDirectory: ['node_modules', 'src/'],
+      },
       typescript: {},
     },
   },
