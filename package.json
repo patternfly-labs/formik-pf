@@ -1,6 +1,6 @@
 {
   "name": "formik-pf",
-  "version": "0.0.1-alpha2",
+  "version": "0.0.1-alpha3",
   "description": "A UI library that provides formik bindings with PF components.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -90,7 +90,7 @@
     "yup": "^0.32.11"
   },
   "peerDependencies": {
-    "@patternfly/react-core": "^4.224.1",
+    "@patternfly/react-core": "^4.202.16",
     "@types/react": "^17.0.2",
     "formik": "^2.2.9",
     "react": "^17.0.2"

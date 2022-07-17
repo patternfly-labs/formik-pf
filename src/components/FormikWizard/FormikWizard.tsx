@@ -9,7 +9,7 @@ export type FormikWizardStep = {
   /** The name of the step */
   name: React.ReactNode;
   /** The component to render in the main body */
-  component: React.ComponentType;
+  component: React.ReactNode;
   /** Optional validation schema object for the current step */
   validationSchema?: any | (() => any);
   /** Can change the Next button text. If nextButtonText is also set for the Wizard, this step specific one overrides it. */
@@ -18,6 +18,8 @@ export type FormikWizardStep = {
   enableNext?: boolean;
   /** Enables or disables the step in the navigation. Enabled by default. */
   canJumpTo?: boolean;
+  /** Removes the default body padding for the step. */
+  hasNoBodyPadding?: boolean;
   /** Handler to be called before moving to next step */
   onSubmit?: (values: FormikValues, formikBag: FormikHelpers<FormikValues>) => Promise<any>;
 };
@@ -37,6 +39,7 @@ const FormikWizard: React.FunctionComponent<FormikWizardProps> = ({
   enableReinitialize,
   onSubmit,
   onReset,
+  hasNoBodyPadding,
   ...restWizardProps
 }) => {
   const [snapshot, setSnapshot] = React.useState(initialValues);
@@ -80,7 +83,11 @@ const FormikWizard: React.FunctionComponent<FormikWizardProps> = ({
       enableReinitialize={enableReinitialize}
     >
       <InternalWizardContext.Provider value={wizardConfig}>
-        <InternalWizard steps={initSteps} {...restWizardProps} />
+        <InternalWizard
+          steps={initSteps}
+          hasNoBodyPadding={currentStep.hasNoBodyPadding || hasNoBodyPadding}
+          {...restWizardProps}
+        />
       </InternalWizardContext.Provider>
     </Formik>
   );
