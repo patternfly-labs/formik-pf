@@ -12,6 +12,12 @@ export type FormikWizardStep = {
   component: React.ReactNode;
   /** Optional validation schema object for the current step */
   validationSchema?: any | (() => any);
+  /** Tells Formik to validate the form on each input's onChange event */
+  validateOnChange?: boolean;
+  /** Tells Formik to validate the form on each input's onBlur event */
+  validateOnBlur?: boolean;
+  /** Tells Formik to validate upon mount */
+  validateOnMount?: boolean;
   /** Can change the Next button text. If nextButtonText is also set for the Wizard, this step specific one overrides it. */
   nextButtonText?: React.ReactNode;
   /** The condition needed to enable the Next button */
@@ -27,7 +33,13 @@ export type FormikWizardStep = {
 type FormikWizardProps = InternalWizardProps &
   Pick<
     FormikConfig<FormikValues>,
-    'initialValues' | 'onSubmit' | 'onReset' | 'enableReinitialize'
+    | 'initialValues'
+    | 'onSubmit'
+    | 'onReset'
+    | 'enableReinitialize'
+    | 'validateOnChange'
+    | 'validateOnBlur'
+    | 'validateOnMount'
   > & {
     steps: FormikWizardStep[];
   };
@@ -37,6 +49,9 @@ const FormikWizard: React.FunctionComponent<FormikWizardProps> = ({
   steps,
   startAtStep,
   enableReinitialize,
+  validateOnChange,
+  validateOnBlur,
+  validateOnMount,
   onSubmit,
   onReset,
   hasNoBodyPadding,
@@ -80,6 +95,9 @@ const FormikWizard: React.FunctionComponent<FormikWizardProps> = ({
       onSubmit={handleSubmit}
       onReset={onReset}
       validationSchema={currentStep.validationSchema}
+      validateOnChange={validateOnChange || currentStep.validateOnChange}
+      validateOnBlur={validateOnBlur || currentStep.validateOnBlur}
+      validateOnMount={validateOnMount || currentStep.validateOnMount}
       enableReinitialize={enableReinitialize}
     >
       <InternalWizardContext.Provider value={wizardConfig}>
