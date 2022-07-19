@@ -37,8 +37,9 @@ const InternalWizardFooter: React.FunctionComponent<InternalWizardFooterProps> =
 
   const handleBack = React.useCallback(() => {
     setErrors({});
+    setStatus({});
     goBack();
-  }, [goBack, setErrors]);
+  }, [goBack, setErrors, setStatus]);
 
   return (
     <footer

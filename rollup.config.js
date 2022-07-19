@@ -30,7 +30,12 @@ export default [
       commonjs(),
       typescript({
         tsconfig: './tsconfig.json',
-        exclude: ['**/__tests__/**/*', '**/*.spec.(ts|tsx)'],
+        exclude: [
+          '**/__tests__/**/*',
+          '**/*.spec.(ts|tsx)',
+          '**/stories/**/*',
+          '**/*.stories.(ts|tsx)',
+        ],
       }),
       postcss(),
       terser(),
