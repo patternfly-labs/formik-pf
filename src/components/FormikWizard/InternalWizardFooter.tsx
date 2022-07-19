@@ -9,7 +9,6 @@ import {
 import styles from '@patternfly/react-styles/css/components/Wizard/wizard';
 import classNames from 'classnames';
 import { FormikValues, useFormikContext } from 'formik';
-import isEmpty from 'lodash/isEmpty';
 import { useInternalWizardContext } from './useInternalWizard';
 
 type InternalWizardFooterProps = {
@@ -27,9 +26,9 @@ const InternalWizardFooter: React.FunctionComponent<InternalWizardFooterProps> =
   const {
     isSubmitting,
     isValidating,
-    errors,
-    setErrors,
+    isValid,
     status,
+    setErrors,
     setStatus,
     submitForm,
     handleReset,
@@ -63,7 +62,7 @@ const InternalWizardFooter: React.FunctionComponent<InternalWizardFooterProps> =
           <Button
             variant="primary"
             type="submit"
-            isDisabled={isSubmitting || isValidating || status?.isValidating || !isEmpty(errors)}
+            isDisabled={isSubmitting || isValidating || status?.isValidating || !isValid}
             isLoading={isSubmitting || isValidating || status?.isValidating}
             onClick={submitForm}
           >
