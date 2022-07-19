@@ -2,6 +2,7 @@ import * as React from 'react';
 import { WizardNav, WizardNavItem, WizardToggle, WizardProps } from '@patternfly/react-core';
 import styles from '@patternfly/react-styles/css/components/Wizard/wizard';
 import classNames from 'classnames';
+import { FormikValues, useFormikContext } from 'formik';
 import { FormikWizardStep } from './FormikWizard';
 import WizardFooter from './InternalWizardFooter';
 import { useInternalWizardContext } from './useInternalWizard';
@@ -36,8 +37,18 @@ const InternalWizard: React.FunctionComponent<InternalWizardProps> = ({
   navAriaLabel,
   navAriaLabelledBy,
 }) => {
-  const { currentStep, goToStep } = useInternalWizardContext();
+  const { currentStep, currentStepIndex, goToStep } = useInternalWizardContext();
+  const { setErrors, setStatus, isValid } = useFormikContext<FormikValues>();
   const [isNavOpen, setIsNavOpen] = React.useState(false);
+
+  const handleGoToStep = React.useCallback(
+    (stepIndex: number) => {
+      setErrors({});
+      setStatus({});
+      goToStep(stepIndex);
+    },
+    [goToStep, setErrors, setStatus],
+  );
 
   const nav = React.useCallback(
     (isWizardNavOpen: boolean) => {
@@ -54,16 +65,27 @@ const InternalWizard: React.FunctionComponent<InternalWizardProps> = ({
                 key={index}
                 content={step.name}
                 isCurrent={currentStep.name === step.name}
-                isDisabled={!step.canJumpTo && step.name !== currentStep.name}
+                isDisabled={
+                  (!step.canJumpTo || (!isValid && index > currentStepIndex)) &&
+                  step.name !== currentStep.name
+                }
                 step={steps.findIndex((s) => s.name === step.name)}
-                onNavItemClick={goToStep}
+                onNavItemClick={handleGoToStep}
               />
             );
           })}
         </WizardNav>
       );
     },
-    [currentStep.name, goToStep, navAriaLabel, navAriaLabelledBy, steps],
+    [
+      currentStep.name,
+      currentStepIndex,
+      handleGoToStep,
+      isValid,
+      navAriaLabel,
+      navAriaLabelledBy,
+      steps,
+    ],
   );
 
   return (
