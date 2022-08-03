@@ -18,14 +18,24 @@ export type FormikWizardStep = {
   validateOnBlur?: boolean;
   /** Tells Formik to validate upon mount */
   validateOnMount?: boolean;
-  /** Can change the Next button text. If nextButtonText is also set for the Wizard, this step specific one overrides it. */
+  /** (Unused if footer is controlled) The Next button text */
   nextButtonText?: React.ReactNode;
-  /** The condition needed to enable the Next button */
-  enableNext?: boolean;
+  /** (Unused if footer is controlled) The Back button text */
+  backButtonText?: React.ReactNode;
+  /** (Unused if footer is controlled) The Cancel button text */
+  cancelButtonText?: React.ReactNode;
+  /** (Unused if footer is controlled) The condition needed to disable the Next button */
+  disableNext?: boolean;
+  /** (Unused if footer is controlled) The condition needed to disable the Back button */
+  disableBack?: boolean;
   /** Enables or disables the step in the navigation. Enabled by default. */
   canJumpTo?: boolean;
   /** Removes the default body padding for the step. */
   hasNoBodyPadding?: boolean;
+  /** Sets the Form to horizontal. */
+  isFormHorizontal?: boolean;
+  /** Flag to limit the max-width to 500px. */
+  isFormWidthLimited?: boolean;
   /** Handler to be called before moving to next step */
   onSubmit?: (values: FormikValues, formikBag: FormikHelpers<FormikValues>) => Promise<any>;
 };
@@ -54,6 +64,7 @@ const FormikWizard: React.FunctionComponent<FormikWizardProps> = ({
   validateOnMount,
   onSubmit,
   onReset,
+  onNext,
   hasNoBodyPadding,
   ...restWizardProps
 }) => {
@@ -65,7 +76,7 @@ const FormikWizard: React.FunctionComponent<FormikWizardProps> = ({
   );
 
   const wizardConfig = useInternalWizard(initSteps, startAtStep);
-  const { currentStep, isLastStep, goNext } = wizardConfig;
+  const { currentStep, currentStepIndex, isLastStep, goNext } = wizardConfig;
 
   const handleSubmit = React.useCallback(
     async (values: FormikValues, formikHelpers: FormikHelpers<FormikValues>) => {
@@ -82,11 +93,13 @@ const FormikWizard: React.FunctionComponent<FormikWizardProps> = ({
       if (isLastStep) return onSubmit(values, formikHelpers);
 
       if (isValid) {
+        formikHelpers.setTouched({});
         setSnapshot(values);
+        onNext?.(currentStepIndex + 1, currentStepIndex);
         goNext();
       }
     },
-    [currentStep, isLastStep, onSubmit, goNext],
+    [currentStep, currentStepIndex, isLastStep, onSubmit, goNext, onNext],
   );
 
   return (
