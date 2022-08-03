@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { WizardNav, WizardNavItem, WizardToggle, WizardProps } from '@patternfly/react-core';
+import { WizardNav, WizardNavItem, WizardToggle, WizardProps, Form } from '@patternfly/react-core';
 import styles from '@patternfly/react-styles/css/components/Wizard/wizard';
 import classNames from 'classnames';
 import { FormikValues, useFormikContext } from 'formik';
 import { FormikWizardStep } from './FormikWizard';
-import WizardFooter from './InternalWizardFooter';
+import InternalWizardFooter from './InternalWizardFooter';
 import { useInternalWizardContext } from './useInternalWizard';
 
 type PickedWizardProps = Pick<
@@ -23,6 +23,8 @@ type PickedWizardProps = Pick<
 
 export type InternalWizardProps = PickedWizardProps & {
   steps: FormikWizardStep[];
+  onNext?: (nextStepIndex: number, prevStepIndex: number) => void;
+  onBack?: (nextStepIndex: number, prevStepIndex: number) => void;
 };
 
 const InternalWizard: React.FunctionComponent<InternalWizardProps> = ({
@@ -36,9 +38,11 @@ const InternalWizard: React.FunctionComponent<InternalWizardProps> = ({
   mainAriaLabelledBy,
   navAriaLabel,
   navAriaLabelledBy,
+  onBack,
 }) => {
   const { currentStep, currentStepIndex, goToStep } = useInternalWizardContext();
-  const { setErrors, setStatus, isValid } = useFormikContext<FormikValues>();
+  const { setErrors, setStatus, isValid, handleSubmit, handleReset } =
+    useFormikContext<FormikValues>();
   const [isNavOpen, setIsNavOpen] = React.useState(false);
 
   const handleGoToStep = React.useCallback(
@@ -60,15 +64,17 @@ const InternalWizard: React.FunctionComponent<InternalWizardProps> = ({
       return (
         <WizardNav {...wizNavAProps}>
           {steps.map((step, index) => {
+            const isNavItemDisabled =
+              (((!isValid || currentStep.disableNext) && index > currentStepIndex) ||
+                (currentStep.disableBack && index < currentStepIndex) ||
+                !step.canJumpTo) &&
+              step.name !== currentStep.name;
             return (
               <WizardNavItem
                 key={index}
                 content={step.name}
                 isCurrent={currentStep.name === step.name}
-                isDisabled={
-                  (!step.canJumpTo || (!isValid && index > currentStepIndex)) &&
-                  step.name !== currentStep.name
-                }
+                isDisabled={isNavItemDisabled}
                 step={steps.findIndex((s) => s.name === step.name)}
                 onNavItemClick={handleGoToStep}
               />
@@ -78,6 +84,8 @@ const InternalWizard: React.FunctionComponent<InternalWizardProps> = ({
       );
     },
     [
+      currentStep.disableBack,
+      currentStep.disableNext,
       currentStep.name,
       currentStepIndex,
       handleGoToStep,
@@ -89,7 +97,13 @@ const InternalWizard: React.FunctionComponent<InternalWizardProps> = ({
   );
 
   return (
-    <div className={classNames(styles.wizard)}>
+    <Form
+      onSubmit={handleSubmit}
+      onReset={handleReset}
+      className={classNames(styles.wizard)}
+      isWidthLimited={currentStep.isFormWidthLimited}
+      isHorizontal={currentStep.isFormHorizontal}
+    >
       <WizardToggle
         mainAriaLabel={mainAriaLabel}
         mainAriaLabelledBy={mainAriaLabelledBy}
@@ -101,14 +115,15 @@ const InternalWizard: React.FunctionComponent<InternalWizardProps> = ({
         hasNoBodyPadding={hasNoBodyPadding}
       >
         {footer || (
-          <WizardFooter
+          <InternalWizardFooter
             nextButtonText={nextButtonText}
             backButtonText={backButtonText}
             cancelButtonText={cancelButtonText}
+            onBack={onBack}
           />
         )}
       </WizardToggle>
-    </div>
+    </Form>
   );
 };
 

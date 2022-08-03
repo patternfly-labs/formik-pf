@@ -15,30 +15,25 @@ type InternalWizardFooterProps = {
   nextButtonText?: React.ReactNode;
   backButtonText?: React.ReactNode;
   cancelButtonText?: React.ReactNode;
+  onBack?: (nextStepIndex: number, prevStepIndex: number) => void;
 };
 
 const InternalWizardFooter: React.FunctionComponent<InternalWizardFooterProps> = ({
   nextButtonText = 'Next',
   backButtonText = 'Back',
   cancelButtonText = 'Cancel',
+  onBack,
 }) => {
-  const { currentStep, isPrevDisabled, goBack } = useInternalWizardContext();
-  const {
-    isSubmitting,
-    isValidating,
-    isValid,
-    status,
-    setErrors,
-    setStatus,
-    submitForm,
-    handleReset,
-  } = useFormikContext<FormikValues>();
+  const { currentStepIndex, currentStep, isPrevDisabled, goBack } = useInternalWizardContext();
+  const { isSubmitting, isValidating, isValid, status, setErrors, setStatus } =
+    useFormikContext<FormikValues>();
 
   const handleBack = React.useCallback(() => {
     setErrors({});
     setStatus({});
+    onBack?.(currentStepIndex + 1, currentStepIndex);
     goBack();
-  }, [goBack, setErrors, setStatus]);
+  }, [currentStepIndex, goBack, onBack, setErrors, setStatus]);
 
   return (
     <footer
@@ -62,21 +57,31 @@ const InternalWizardFooter: React.FunctionComponent<InternalWizardFooterProps> =
           <Button
             variant="primary"
             type="submit"
-            isDisabled={isSubmitting || isValidating || status?.isValidating || !isValid}
+            isDisabled={
+              isSubmitting ||
+              isValidating ||
+              status?.isValidating ||
+              status?.submitError ||
+              !isValid ||
+              currentStep.disableNext
+            }
             isLoading={isSubmitting || isValidating || status?.isValidating}
-            onClick={submitForm}
           >
             {currentStep.nextButtonText || nextButtonText}
           </Button>
         </ActionListItem>
         <ActionListItem>
-          <Button variant="secondary" onClick={handleBack} isDisabled={isPrevDisabled}>
-            {backButtonText}
+          <Button
+            variant="secondary"
+            onClick={handleBack}
+            isDisabled={isPrevDisabled || currentStep.disableBack}
+          >
+            {currentStep.backButtonText || backButtonText}
           </Button>
         </ActionListItem>
         <ActionListItem>
-          <Button variant="link" onClick={handleReset}>
-            {cancelButtonText}
+          <Button variant="link" type="reset">
+            {currentStep.cancelButtonText || cancelButtonText}
           </Button>
         </ActionListItem>
       </ActionList>
