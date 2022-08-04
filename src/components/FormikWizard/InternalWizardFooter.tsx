@@ -25,8 +25,16 @@ const InternalWizardFooter: React.FunctionComponent<InternalWizardFooterProps> =
   onBack,
 }) => {
   const { currentStepIndex, currentStep, isPrevDisabled, goBack } = useInternalWizardContext();
-  const { isSubmitting, isValidating, isValid, status, setErrors, setStatus } =
-    useFormikContext<FormikValues>();
+  const {
+    isSubmitting,
+    isValidating,
+    isValid,
+    status,
+    setErrors,
+    setStatus,
+    submitForm,
+    handleReset,
+  } = useFormikContext<FormikValues>();
 
   const handleBack = React.useCallback(() => {
     setErrors({});
@@ -66,6 +74,7 @@ const InternalWizardFooter: React.FunctionComponent<InternalWizardFooterProps> =
               currentStep.disableNext
             }
             isLoading={isSubmitting || isValidating || status?.isValidating}
+            onClick={submitForm}
           >
             {currentStep.nextButtonText || nextButtonText}
           </Button>
@@ -80,7 +89,7 @@ const InternalWizardFooter: React.FunctionComponent<InternalWizardFooterProps> =
           </Button>
         </ActionListItem>
         <ActionListItem>
-          <Button variant="link" type="reset">
+          <Button variant="link" type="reset" onClick={handleReset}>
             {currentStep.cancelButtonText || cancelButtonText}
           </Button>
         </ActionListItem>
