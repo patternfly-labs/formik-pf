@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Card, Form, Page, PageSection, WizardFooter } from '@patternfly/react-core';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import * as yup from 'yup';
-import { InputField } from '../components';
+import { CheckboxField, InputField } from '../components';
 import { FormikWizard } from '../components/FormikWizard';
 import FormValues from './FormValues';
 
@@ -137,4 +137,43 @@ CustomFooterWizard.args = {
       </Button>
     </WizardFooter>
   ),
+};
+
+export const ErrorStateWizard = Template.bind({});
+ErrorStateWizard.args = {
+  steps: [
+    {
+      id: 'user',
+      name: 'User Details',
+      component: (
+        <Form isWidthLimited>
+          <InputField name="user.name" label="User Name" isRequired />
+          <CheckboxField name="user.allowDuplicates" label="Allow Duplicates" />
+        </Form>
+      ),
+      onSubmit: (values, helpers) => {
+        if (values.user.allowDuplicates) {
+          return new Promise((resolve) => {
+            setTimeout(resolve, 1500);
+          });
+        }
+        return new Promise((_, reject) => {
+          setTimeout(reject, 1500);
+          helpers.setFieldError('user.name', 'Name already taken');
+        });
+      },
+      nextButtonText: 'Submit',
+      validationSchema: userValidationSchema,
+    },
+  ],
+  initialValues: {
+    user: {
+      name: '',
+      allowDuplicates: true,
+    },
+  },
+  onSubmit: () => {
+    // eslint-disable-next-line no-alert
+    alert('form submitted');
+  },
 };
