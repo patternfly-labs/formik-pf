@@ -90,9 +90,9 @@ const FormikWizard: React.FunctionComponent<FormikWizardProps> = ({
         }
       }
 
-      if (isLastStep) return onSubmit(values, formikHelpers);
-
       if (isValid) {
+        if (isLastStep) return onSubmit(values, formikHelpers);
+
         formikHelpers.setTouched({});
         setSnapshot(values);
         onNext?.(currentStepIndex + 1, currentStepIndex);
