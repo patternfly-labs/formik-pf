@@ -65,14 +65,7 @@ const InternalWizardFooter: React.FunctionComponent<InternalWizardFooterProps> =
           <Button
             variant="primary"
             type="submit"
-            isDisabled={
-              isSubmitting ||
-              isValidating ||
-              status?.isValidating ||
-              status?.submitError ||
-              !isValid ||
-              currentStep.disableNext
-            }
+            isDisabled={isSubmitting || isValidating || !isValid || currentStep.disableNext}
             isLoading={isSubmitting || isValidating || status?.isValidating}
             onClick={submitForm}
           >
