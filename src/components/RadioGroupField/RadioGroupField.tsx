@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup } from '@patternfly/react-core';
+import { FormGroup,  } from '@patternfly/react-core';
 import classNames from 'classnames';
 import { useField } from 'formik';
 import RadioButtonField from '../RadioButtonField/RadioButtonField';
@@ -7,6 +7,7 @@ import { FieldProps } from '../types';
 import { getFieldId } from '../utils';
 
 import './RadioGroupField.scss';
+import FieldHelperText from '../FieldHelperText';
 
 export type RadioGroupOption = {
   value: React.ReactText;
@@ -40,9 +41,6 @@ const RadioGroupField: React.FC<RadioGroupFieldProps> = ({
         'radio-group-field--inline': isInline,
       })}
       fieldId={fieldId}
-      helperText={helperText}
-      helperTextInvalid={errorMessage}
-      validated={isValid ? 'default' : 'error'}
       isRequired={isRequired}
       label={label}
       isInline={isInline}
@@ -73,6 +71,7 @@ const RadioGroupField: React.FC<RadioGroupFieldProps> = ({
           </React.Fragment>
         );
       })}
+      <FieldHelperText isValid={isValid} errorMessage={errorMessage} helpText={helperText} />
     </FormGroup>
   );
 };

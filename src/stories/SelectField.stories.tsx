@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import * as yup from 'yup';
 import { SelectField } from '../components';
 import { FormWrapper } from './FormWrapper';
@@ -13,7 +13,7 @@ export default {
     rows: { control: 'number' },
     placeholder: { control: 'text' },
   },
-} as ComponentMeta<typeof SelectField>;
+} as Meta<typeof SelectField>;
 
 const initialValues = {
   fruits: [],
@@ -24,7 +24,7 @@ const validationSchema = yup.object().shape({
 });
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof SelectField> = (args) => (
+const Template: StoryFn<typeof SelectField> = (args) => (
   <FormWrapper initialValues={initialValues} validationSchema={validationSchema}>
     <SelectField {...args} />
   </FormWrapper>

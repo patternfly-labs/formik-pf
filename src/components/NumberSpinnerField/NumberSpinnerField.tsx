@@ -4,6 +4,7 @@ import { useField, useFormikContext, FormikValues } from 'formik';
 import toInteger from 'lodash-es/toInteger';
 import { FieldProps } from '../types';
 import { getFieldId } from '../utils';
+import FieldHelperText from '../FieldHelperText';
 
 type NumberSpinnerFieldProps = FieldProps & {
   min?: number;
@@ -31,9 +32,6 @@ const NumberSpinnerField: React.FC<NumberSpinnerFieldProps> = ({
     <FormGroup
       fieldId={fieldId}
       label={label}
-      helperText={helperText}
-      helperTextInvalid={errorMessage}
-      validated={isValid ? 'default' : 'error'}
       isRequired={required}
     >
       <NumberInput
@@ -48,6 +46,7 @@ const NumberSpinnerField: React.FC<NumberSpinnerFieldProps> = ({
         plusBtnAriaLabel="Increment"
         aria-describedby={helperText ? `${fieldId}-helper` : undefined}
       />
+      <FieldHelperText isValid={isValid} errorMessage={errorMessage} helpText={helperText} />
     </FormGroup>
   );
 };

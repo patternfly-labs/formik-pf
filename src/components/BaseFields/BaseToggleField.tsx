@@ -1,8 +1,9 @@
 import React from 'react';
-import { FormGroup } from '@patternfly/react-core';
+import { FormGroup,  } from '@patternfly/react-core';
 import { useField } from 'formik';
 import { FieldProps } from '../types';
 import { getFieldId } from '../utils';
+import FieldHelperText from '../FieldHelperText';
 
 export type BaseToggleFieldProps = FieldProps & {
   formLabel?: string;
@@ -21,9 +22,6 @@ const BaseToggleField: React.FC<BaseToggleFieldProps & { children: (props) => Re
       <FormGroup
         fieldId={fieldId}
         label={formLabel}
-        helperText={helperText}
-        helperTextInvalid={errorMessage}
-        validated={isValid ? 'default' : 'error'}
         isRequired={isRequired}
       >
         {children({
@@ -40,6 +38,7 @@ const BaseToggleField: React.FC<BaseToggleFieldProps & { children: (props) => Re
             onChange && onChange(val);
           },
         })}
+        <FieldHelperText isValid={isValid} errorMessage={errorMessage} helpText={helperText} />
       </FormGroup>
     );
   };
