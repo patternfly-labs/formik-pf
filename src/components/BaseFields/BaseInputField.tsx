@@ -50,7 +50,7 @@ const BaseInputField: React.FC<
         label,
         validated: !isValid ? ValidatedOptions.error : validated,
         'aria-describedby': helperText ? `${fieldId}-helper` : undefined,
-        onChange: (value, event) => {
+        onChange: (event) => {
           field.onChange(event);
           onChange && onChange(event);
         },

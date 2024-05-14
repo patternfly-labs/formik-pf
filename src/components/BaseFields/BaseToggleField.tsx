@@ -33,7 +33,7 @@ const BaseToggleField: React.FC<BaseToggleFieldProps & { children: (props) => Re
           isChecked: field.checked,
           isValid,
           'aria-describedby': helperText ? `${fieldId}-helper` : undefined,
-          onChange: (val, event) => {
+          onChange: (event, val) => {
             field.onChange(event);
             onChange && onChange(val);
           },
