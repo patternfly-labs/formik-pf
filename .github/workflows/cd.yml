@@ -28,24 +28,24 @@ jobs:
           node-version: "14"
           cache: "npm"
           
-      - name: Install latest npm
-        run: npm i -g npm@latest
+      - name: Install Yarn
+        run: npm install -g yarn
 
       - name: Install Dependencies 🥁
-        run: npm install
+        run: yarn install
 
       - name: Lint ✅
         # max-warnings=0 ensures that CI fails even for warnings
-        run: npm run lint --max-warnings=0
+        run: yarn lint --max-warnings=0
 
       - name: Test 🧪
-        run: npm run test
+        run: yarn test
 
       - name: Build Library 🏗
-        run: npm run build
+        run: yarn build
 
       - name: Build Storybook 🏗
-        run: npm run build-storybook
+        run: yarn build-storybook
 
       - name: Deploy Storybook 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
