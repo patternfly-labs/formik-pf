@@ -1,13 +1,13 @@
 import React from 'react';
-import { FormGroup,  } from '@patternfly/react-core';
+import { FormGroup } from '@patternfly/react-core';
 import classNames from 'classnames';
 import { useField } from 'formik';
+import FieldHelperText from '../FieldHelperText';
 import RadioButtonField from '../RadioButtonField/RadioButtonField';
 import { FieldProps } from '../types';
 import { getFieldId } from '../utils';
 
 import './RadioGroupField.scss';
-import FieldHelperText from '../FieldHelperText';
 
 export type RadioGroupOption = {
   value: React.ReactText;

@@ -1,17 +1,11 @@
 import React from 'react';
-import {
-	FormGroup
-} from '@patternfly/react-core';
-import {
-	Select,
-	SelectVariant,
-	SelectOption
-} from '@patternfly/react-core/deprecated';
+import { FormGroup } from '@patternfly/react-core';
+import { Select, SelectVariant, SelectOption } from '@patternfly/react-core/deprecated';
 import { useField, useFormikContext, FormikValues } from 'formik';
 import pull from 'lodash-es/pull';
+import FieldHelperText from '../FieldHelperText';
 import { FieldProps } from '../types';
 import { getFieldId } from '../utils';
-import FieldHelperText from '../FieldHelperText';
 
 type SelectInputOption = {
   value: string;
@@ -72,11 +66,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
   };
 
   return (
-    <FormGroup
-      fieldId={fieldId}
-      label={label}
-      isRequired={isRequired}
-    >
+    <FormGroup fieldId={fieldId} label={label} isRequired={isRequired}>
       <Select
         variant={SelectVariant.typeaheadMulti}
         onToggle={onToggle}

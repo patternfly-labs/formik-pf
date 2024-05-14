@@ -2,9 +2,9 @@ import React from 'react';
 import { FormGroup, NumberInput } from '@patternfly/react-core';
 import { useField, useFormikContext, FormikValues } from 'formik';
 import toInteger from 'lodash-es/toInteger';
+import FieldHelperText from '../FieldHelperText';
 import { FieldProps } from '../types';
 import { getFieldId } from '../utils';
-import FieldHelperText from '../FieldHelperText';
 
 type NumberSpinnerFieldProps = FieldProps & {
   min?: number;
@@ -29,11 +29,7 @@ const NumberSpinnerField: React.FC<NumberSpinnerFieldProps> = ({
   };
 
   return (
-    <FormGroup
-      fieldId={fieldId}
-      label={label}
-      isRequired={required}
-    >
+    <FormGroup fieldId={fieldId} label={label} isRequired={required}>
       <NumberInput
         {...field}
         {...props}

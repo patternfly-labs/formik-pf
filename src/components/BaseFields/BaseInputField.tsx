@@ -1,7 +1,14 @@
 import React from 'react';
-import { FormGroup, FormHelperText, HelperText, HelperTextItem, TextInputTypes, ValidatedOptions } from '@patternfly/react-core';
-import { useField } from 'formik';
+import {
+  FormGroup,
+  FormHelperText,
+  HelperText,
+  HelperTextItem,
+  TextInputTypes,
+  ValidatedOptions,
+} from '@patternfly/react-core';
 import { ExclamationCircleIcon } from '@patternfly/react-icons/dist/js/icons/exclamation-circle-icon';
+import { useField } from 'formik';
 import { FieldProps } from '../types';
 import { getFieldId } from '../utils';
 

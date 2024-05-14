@@ -1,12 +1,10 @@
 import * as React from 'react';
+import { Form } from '@patternfly/react-core';
 import {
-	Form
-} from '@patternfly/react-core';
-import {
-	WizardNav,
-	WizardNavItem,
-	WizardToggle,
-	WizardProps
+  WizardNav,
+  WizardNavItem,
+  WizardToggle,
+  WizardProps,
 } from '@patternfly/react-core/deprecated';
 import styles from '@patternfly/react-styles/css/components/Wizard/wizard';
 import classNames from 'classnames';
