@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import * as yup from 'yup';
 import { NumberSpinnerField } from '../components';
 import { FormWrapper } from './FormWrapper';
@@ -14,7 +14,7 @@ export default {
     max: { control: 'number' },
     isRequired: { control: 'boolean' },
   },
-} as ComponentMeta<typeof NumberSpinnerField>;
+} as Meta<typeof NumberSpinnerField>;
 
 const initialValues = {
   items: 1,
@@ -25,7 +25,7 @@ const validationSchema = yup.object().shape({
 });
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof NumberSpinnerField> = (args) => (
+const Template: StoryFn<typeof NumberSpinnerField> = (args) => (
   <FormWrapper initialValues={initialValues} validationSchema={validationSchema}>
     <NumberSpinnerField {...args} />
   </FormWrapper>

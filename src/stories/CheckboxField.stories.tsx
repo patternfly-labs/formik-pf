@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextInputTypes } from '@patternfly/react-core';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import * as yup from 'yup';
 import { CheckboxField, InputField } from '../components';
 import { FormWrapper } from './FormWrapper';
@@ -13,7 +13,7 @@ export default {
   // argTypes: {
   //   backgroundColor: { control: 'color' },
   // },
-} as ComponentMeta<typeof CheckboxField>;
+} as Meta<typeof CheckboxField>;
 
 const initialValues = {
   user: { email: '' },
@@ -28,7 +28,7 @@ const validationSchema = yup.object().shape({
 });
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof CheckboxField> = (args) => (
+const Template = (args) => (
   <FormWrapper initialValues={initialValues} validationSchema={validationSchema}>
     <InputField name="user.email" type={TextInputTypes.email} label="Email" />
     <CheckboxField {...args} />

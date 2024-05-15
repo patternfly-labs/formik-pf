@@ -2,6 +2,7 @@ import React from 'react';
 import { FormGroup, NumberInput } from '@patternfly/react-core';
 import { useField, useFormikContext, FormikValues } from 'formik';
 import toInteger from 'lodash-es/toInteger';
+import FieldHelperText from '../FieldHelperText';
 import { FieldProps } from '../types';
 import { getFieldId } from '../utils';
 
@@ -28,14 +29,7 @@ const NumberSpinnerField: React.FC<NumberSpinnerFieldProps> = ({
   };
 
   return (
-    <FormGroup
-      fieldId={fieldId}
-      label={label}
-      helperText={helperText}
-      helperTextInvalid={errorMessage}
-      validated={isValid ? 'default' : 'error'}
-      isRequired={required}
-    >
+    <FormGroup fieldId={fieldId} label={label} isRequired={required}>
       <NumberInput
         {...field}
         {...props}
@@ -48,6 +42,7 @@ const NumberSpinnerField: React.FC<NumberSpinnerFieldProps> = ({
         plusBtnAriaLabel="Increment"
         aria-describedby={helperText ? `${fieldId}-helper` : undefined}
       />
+      <FieldHelperText isValid={isValid} errorMessage={errorMessage} helpText={helperText} />
     </FormGroup>
   );
 };

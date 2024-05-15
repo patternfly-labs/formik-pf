@@ -1,7 +1,9 @@
 import React from 'react';
-import { FormGroup, Select, SelectVariant, SelectOption } from '@patternfly/react-core';
+import { FormGroup } from '@patternfly/react-core';
+import { Select, SelectVariant, SelectOption } from '@patternfly/react-core/deprecated';
 import { useField, useFormikContext, FormikValues } from 'formik';
 import pull from 'lodash-es/pull';
+import FieldHelperText from '../FieldHelperText';
 import { FieldProps } from '../types';
 import { getFieldId } from '../utils';
 
@@ -64,14 +66,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
   };
 
   return (
-    <FormGroup
-      fieldId={fieldId}
-      validated={isValid ? 'default' : 'error'}
-      label={label}
-      helperText={helperText}
-      helperTextInvalid={errorMessage}
-      isRequired={isRequired}
-    >
+    <FormGroup fieldId={fieldId} label={label} isRequired={isRequired}>
       <Select
         variant={SelectVariant.typeaheadMulti}
         onToggle={onToggle}
@@ -87,6 +82,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
           <SelectOption value={op.value} isDisabled={op.disabled} key={op.value} />
         ))}
       </Select>
+      <FieldHelperText isValid={isValid} errorMessage={errorMessage} helpText={helperText} />
     </FormGroup>
   );
 };

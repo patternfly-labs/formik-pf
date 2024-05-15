@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import * as yup from 'yup';
 import { RadioGroupField } from '../components';
 import { FormWrapper } from './FormWrapper';
@@ -12,7 +12,7 @@ export default {
   argTypes: {
     isRequired: { control: 'boolean' },
   },
-} as ComponentMeta<typeof RadioGroupField>;
+} as Meta<typeof RadioGroupField>;
 
 const initialValues = {
   timezone: '',
@@ -23,7 +23,7 @@ const validationSchema = yup.object().shape({
 });
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof RadioGroupField> = (args) => (
+const Template: StoryFn<typeof RadioGroupField> = (args) => (
   <FormWrapper initialValues={initialValues} validationSchema={validationSchema}>
     <RadioGroupField {...args} />
   </FormWrapper>

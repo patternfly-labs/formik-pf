@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button, Card, Form, Page, PageSection, WizardFooter } from '@patternfly/react-core';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Button, Card, Form, Page, PageSection } from '@patternfly/react-core';
+import { WizardFooter } from '@patternfly/react-core/deprecated';
+import { StoryFn, Meta } from '@storybook/react';
 import * as yup from 'yup';
 import { CheckboxField, InputField } from '../components';
 import { FormikWizard } from '../components/FormikWizard';
@@ -34,7 +35,7 @@ export default {
       description: 'The text for the cancel button',
     },
   },
-} as ComponentMeta<typeof FormikWizard>;
+} as Meta<typeof FormikWizard>;
 
 const initialValues = {
   user: { name: '', phone: '' },
@@ -96,7 +97,7 @@ const steps = [
 ];
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof FormikWizard> = (args) => (
+const Template: StoryFn<typeof FormikWizard> = (args) => (
   <Page>
     <PageSection variant="light" isFilled isWidthLimited isCenterAligned>
       <Card isFlat>

@@ -2,24 +2,31 @@ import React from 'react';
 import { FileUpload } from '@patternfly/react-core';
 import BaseInputField, { BaseInputFieldProps } from '../BaseFields/BaseInputField';
 
-const FileUploadField: React.FunctionComponent<
-  Omit<BaseInputFieldProps, 'onChange'> & React.ComponentProps<typeof FileUpload>
-> = ({ onChange, ...baseProps }) => {
-  const onChangeHandle = (
-    valueData: string | File,
-    filenameData: string,
-    events:
-      | React.DragEvent<HTMLElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
-      | React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    onChange?.(valueData, filenameData, events);
-  };
+const renderFunction = (
+  {
+    type,
+    children,
+    ...baseProps
+  }: Omit<BaseInputFieldProps, 'type'> & Omit<React.ComponentProps<typeof FileUpload>, 'validated'>,
+  ref: React.Ref<HTMLInputElement>,
+) => {
   return (
     <BaseInputField {...baseProps}>
-      {(props) => <FileUpload {...props} onChange={onChangeHandle} id={baseProps.id} />}
+      {(props) => (
+        <FileUpload
+          ref={ref}
+          {...props}
+          id={baseProps.id}
+          value={baseProps.value ?? props.value}
+          type={type}
+        >
+          {children}
+        </FileUpload>
+      )}
     </BaseInputField>
   );
 };
+
+const FileUploadField = React.forwardRef(renderFunction);
 
 export default FileUploadField;

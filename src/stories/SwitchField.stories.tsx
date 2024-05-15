@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextInputTypes } from '@patternfly/react-core';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import * as yup from 'yup';
 import { SwitchField, InputField } from '../components';
 import { FormWrapper } from './FormWrapper';
@@ -13,7 +13,7 @@ export default {
   // argTypes: {
   //   backgroundColor: { control: 'color' },
   // },
-} as ComponentMeta<typeof SwitchField>;
+} as Meta<typeof SwitchField>;
 
 const initialValues = {
   user: { email: '' },
@@ -28,7 +28,7 @@ const validationSchema = yup.object().shape({
 });
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof SwitchField> = (args) => (
+const Template: StoryFn<typeof SwitchField> = (args) => (
   <FormWrapper initialValues={initialValues} validationSchema={validationSchema}>
     <InputField name="user.email" type={TextInputTypes.email} label="Email" />
     <SwitchField {...args} />

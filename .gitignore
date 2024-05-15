@@ -20,3 +20,5 @@ yarn-error.log*
 coverage
 integration-tests/cypress
 storybook-static
+
+.cache_*
