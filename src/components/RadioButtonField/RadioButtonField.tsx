@@ -38,7 +38,7 @@ const RadioButtonField: React.FC<RadioButtonFieldProps> = ({
         } else {
           setFieldValue(name, value);
         }
-        setFieldTouched(name, true);
+        setFieldTouched(name, true, false);
       }}
     />
   );
