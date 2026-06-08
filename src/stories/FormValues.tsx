@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardBody, CodeBlock, CodeBlockCode, Text } from '@patternfly/react-core';
+import { Card, CardBody, CodeBlock, CodeBlockCode, Content } from '@patternfly/react-core';
 import { useFormikContext } from 'formik';
 
 function replacer(_: string, value: unknown) {
@@ -17,9 +17,9 @@ function replacer(_: string, value: unknown) {
 const FormValues: React.FC = () => {
   const { values } = useFormikContext();
   return (
-    <Card isFlat>
+    <Card >
       <CardBody>
-        <Text component="h5">Form State</Text>
+        <Content component="h5">Form State</Content>
         <CodeBlock>
           <CodeBlockCode>{JSON.stringify(values, replacer, 2)}</CodeBlockCode>
         </CodeBlock>

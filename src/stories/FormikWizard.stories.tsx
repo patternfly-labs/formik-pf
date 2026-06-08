@@ -99,8 +99,8 @@ const steps = [
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof FormikWizard> = (args) => (
   <Page>
-    <PageSection variant="light" isFilled isWidthLimited isCenterAligned>
-      <Card isFlat>
+    <PageSection hasBodyWrapper  isFilled isWidthLimited isCenterAligned>
+      <Card >
         <FormikWizard {...args} />
       </Card>
     </PageSection>

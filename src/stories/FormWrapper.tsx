@@ -18,7 +18,7 @@ export const FormWrapper: React.FC<FormWrapperProps> = ({
   validationSchema,
 }) => (
   <Page>
-    <PageSection variant="light" isFilled isWidthLimited isCenterAligned>
+    <PageSection hasBodyWrapper  isFilled isWidthLimited isCenterAligned>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}

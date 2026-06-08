@@ -28,7 +28,7 @@ const BaseInputField: React.FC<
   children,
   name,
   label,
-  labelIcon,
+  labelHelp,
   helperText,
   helperTextInvalid,
   isRequired,
@@ -45,7 +45,7 @@ const BaseInputField: React.FC<
     <FormGroup
       fieldId={fieldId}
       label={label}
-      labelIcon={labelIcon}
+      labelHelp={labelHelp}
       isRequired={isRequired}
       data-test={dataTest}
     >
