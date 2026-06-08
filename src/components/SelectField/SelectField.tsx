@@ -53,17 +53,12 @@ const SelectField: React.FC<SelectFieldProps> = ({
   const isValid = !(touched && error);
   const errorMessage = !isValid ? error : '';
 
-  const allOptions = React.useMemo(
-    () => [...options, ...newOptions],
-    [options, newOptions],
-  );
+  const allOptions = React.useMemo(() => [...options, ...newOptions], [options, newOptions]);
 
   const filteredOptions = React.useMemo(
     () =>
       inputValue
-        ? allOptions.filter((op) =>
-            op.value.toLowerCase().includes(inputValue.toLowerCase()),
-          )
+        ? allOptions.filter((op) => op.value.toLowerCase().includes(inputValue.toLowerCase()))
         : allOptions,
     [allOptions, inputValue],
   );
@@ -72,7 +67,10 @@ const SelectField: React.FC<SelectFieldProps> = ({
     const val = value as string;
     const selections = field.value;
     if (selections.includes(val)) {
-      setFieldValue(name, selections.filter((s) => s !== val));
+      setFieldValue(
+        name,
+        selections.filter((s) => s !== val),
+      );
     } else {
       setFieldValue(name, [...selections, val]);
     }
@@ -129,7 +127,9 @@ const SelectField: React.FC<SelectFieldProps> = ({
           }}
           innerRef={textInputRef}
           placeholder={
-            field.value.length > 0 ? `${field.value.length} selected` : (placeholderText as string) || 'Select...'
+            field.value.length > 0
+              ? `${field.value.length} selected`
+              : (placeholderText as string) || 'Select...'
           }
           autoComplete="off"
         />

@@ -1,5 +1,15 @@
 import React from 'react';
-import { ActionList, ActionListGroup, ActionListItem, Button, Card, Form, Page, PageSection, WizardFooterWrapper } from '@patternfly/react-core';
+import {
+  ActionList,
+  ActionListGroup,
+  ActionListItem,
+  Button,
+  Card,
+  Form,
+  Page,
+  PageSection,
+  WizardFooterWrapper,
+} from '@patternfly/react-core';
 import { StoryFn, Meta } from '@storybook/react';
 import * as yup from 'yup';
 import { CheckboxField, InputField } from '../components';
@@ -98,8 +108,8 @@ const steps = [
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof FormikWizard> = (args) => (
   <Page>
-    <PageSection hasBodyWrapper  isFilled isWidthLimited isCenterAligned>
-      <Card >
+    <PageSection hasBodyWrapper isFilled isWidthLimited isCenterAligned>
+      <Card>
         <FormikWizard {...args} />
       </Card>
     </PageSection>

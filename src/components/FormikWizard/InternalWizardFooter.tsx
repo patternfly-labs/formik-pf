@@ -25,15 +25,8 @@ const InternalWizardFooter: React.FunctionComponent<InternalWizardFooterProps> =
   onBack,
 }) => {
   const { currentStepIndex, currentStep, isPrevDisabled, goBack } = useInternalWizardContext();
-  const {
-    isSubmitting,
-    isValidating,
-    isValid,
-    status,
-    setErrors,
-    setStatus,
-    handleReset,
-  } = useFormikContext<FormikValues>();
+  const { isSubmitting, isValidating, isValid, status, setErrors, setStatus, handleReset } =
+    useFormikContext<FormikValues>();
 
   const handleBack = React.useCallback(() => {
     setErrors({});

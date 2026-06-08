@@ -17,7 +17,7 @@ function replacer(_: string, value: unknown) {
 const FormValues: React.FC = () => {
   const { values } = useFormikContext();
   return (
-    <Card >
+    <Card>
       <CardBody>
         <Content component="h5">Form State</Content>
         <CodeBlock>
