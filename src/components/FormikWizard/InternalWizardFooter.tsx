@@ -1,13 +1,13 @@
 import * as React from 'react';
 import {
   ActionList,
+  ActionListGroup,
   ActionListItem,
   Alert,
   AlertActionCloseButton,
   Button,
+  WizardFooterWrapper,
 } from '@patternfly/react-core';
-import styles from '@patternfly/react-styles/css/components/Wizard/wizard';
-import classNames from 'classnames';
 import { FormikValues, useFormikContext } from 'formik';
 import { useInternalWizardContext } from './useInternalWizard';
 
@@ -25,8 +25,15 @@ const InternalWizardFooter: React.FunctionComponent<InternalWizardFooterProps> =
   onBack,
 }) => {
   const { currentStepIndex, currentStep, isPrevDisabled, goBack } = useInternalWizardContext();
-  const { isSubmitting, isValidating, isValid, status, setErrors, setStatus, handleReset } =
-    useFormikContext<FormikValues>();
+  const {
+    isSubmitting,
+    isValidating,
+    isValid,
+    status,
+    setErrors,
+    setStatus,
+    handleReset,
+  } = useFormikContext<FormikValues>();
 
   const handleBack = React.useCallback(() => {
     setErrors({});
@@ -36,10 +43,7 @@ const InternalWizardFooter: React.FunctionComponent<InternalWizardFooterProps> =
   }, [currentStepIndex, goBack, onBack, setErrors, setStatus]);
 
   return (
-    <footer
-      className={classNames(styles.wizardFooter)}
-      style={{ flexDirection: 'column', position: 'sticky', bottom: '0' }}
-    >
+    <WizardFooterWrapper style={{ flexDirection: 'column' }}>
       {status?.submitError && (
         <Alert
           isInline
@@ -53,32 +57,36 @@ const InternalWizardFooter: React.FunctionComponent<InternalWizardFooterProps> =
         </Alert>
       )}
       <ActionList>
-        <ActionListItem>
-          <Button
-            variant="primary"
-            type="submit"
-            isDisabled={isSubmitting || isValidating || !isValid || currentStep.disableNext}
-            isLoading={isSubmitting || isValidating || status?.isValidating}
-          >
-            {currentStep.nextButtonText || nextButtonText}
-          </Button>
-        </ActionListItem>
-        <ActionListItem>
-          <Button
-            variant="secondary"
-            onClick={handleBack}
-            isDisabled={isPrevDisabled || currentStep.disableBack}
-          >
-            {currentStep.backButtonText || backButtonText}
-          </Button>
-        </ActionListItem>
-        <ActionListItem>
-          <Button variant="link" type="reset" onClick={handleReset}>
-            {currentStep.cancelButtonText || cancelButtonText}
-          </Button>
-        </ActionListItem>
+        <ActionListGroup>
+          <ActionListItem>
+            <Button
+              variant="secondary"
+              onClick={handleBack}
+              isDisabled={isPrevDisabled || currentStep.disableBack}
+            >
+              {currentStep.backButtonText || backButtonText}
+            </Button>
+          </ActionListItem>
+          <ActionListItem>
+            <Button
+              variant="primary"
+              type="submit"
+              isDisabled={isSubmitting || isValidating || !isValid || currentStep.disableNext}
+              isLoading={isSubmitting || isValidating || status?.isValidating}
+            >
+              {currentStep.nextButtonText || nextButtonText}
+            </Button>
+          </ActionListItem>
+        </ActionListGroup>
+        <ActionListGroup>
+          <ActionListItem>
+            <Button variant="link" type="reset" onClick={handleReset}>
+              {currentStep.cancelButtonText || cancelButtonText}
+            </Button>
+          </ActionListItem>
+        </ActionListGroup>
       </ActionList>
-    </footer>
+    </WizardFooterWrapper>
   );
 };
 
