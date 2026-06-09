@@ -1,6 +1,15 @@
 import React from 'react';
-import { Button, Card, Form, Page, PageSection } from '@patternfly/react-core';
-import { WizardFooter } from '@patternfly/react-core/deprecated';
+import {
+  ActionList,
+  ActionListGroup,
+  ActionListItem,
+  Button,
+  Card,
+  Form,
+  Page,
+  PageSection,
+  WizardFooterWrapper,
+} from '@patternfly/react-core';
 import { StoryFn, Meta } from '@storybook/react';
 import * as yup from 'yup';
 import { CheckboxField, InputField } from '../components';
@@ -99,8 +108,8 @@ const steps = [
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof FormikWizard> = (args) => (
   <Page>
-    <PageSection variant="light" isFilled isWidthLimited isCenterAligned>
-      <Card isFlat>
+    <PageSection hasBodyWrapper isFilled isWidthLimited isCenterAligned>
+      <Card>
         <FormikWizard {...args} />
       </Card>
     </PageSection>
@@ -128,15 +137,27 @@ CustomFooterWizard.args = {
     return new Promise((resolve) => setTimeout(resolve, 1500));
   },
   footer: (
-    <WizardFooter>
-      <Button variant="primary" type="submit">
-        Take me to the next step
-      </Button>
-      <Button variant="secondary">Nope! Changed my mind</Button>
-      <Button variant="link" type="reset">
-        I dont like this
-      </Button>
-    </WizardFooter>
+    <WizardFooterWrapper>
+      <ActionList>
+        <ActionListGroup>
+          <ActionListItem>
+            <Button variant="secondary">Nope! Changed my mind</Button>
+          </ActionListItem>
+          <ActionListItem>
+            <Button variant="primary" type="submit">
+              Take me to the next step
+            </Button>
+          </ActionListItem>
+        </ActionListGroup>
+        <ActionListGroup>
+          <ActionListItem>
+            <Button variant="link" type="reset">
+              I dont like this
+            </Button>
+          </ActionListItem>
+        </ActionListGroup>
+      </ActionList>
+    </WizardFooterWrapper>
   ),
 };
 
